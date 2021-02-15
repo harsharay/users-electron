@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 
 import "./Register.css"
 
@@ -102,6 +103,7 @@ const Register = (props) => {
                     }).then(data => data.json())
                     .then(json => {
                         console.log(json)
+                        window.alert(json.message)
                         setData(prev => {
                             return {
                                 email: "",
@@ -112,7 +114,7 @@ const Register = (props) => {
                         })
                     })
                 } else {
-                    console.log("Error with the input data")
+                    window.alert("Error with the input data")
                 }
             } else {
                 window.alert("Enter all details")
@@ -142,36 +144,40 @@ const Register = (props) => {
                 pathname: "/secondTab",
                 authToken
             })
+        } else {
+            window.alert(`Please ${<Link to="/">login</Link>} again`)
         }
     }
 
     return (
         <> 
-            <button onClick={handleGoBack}>Go back</button>
+            {/* <button onClick={handleGoBack}>Go back</button> */}
             {displayPage ? 
-                <div>
-                    <button onClick={handleGoBack}>Go back</button>
-                    <button onClick={handleRedirectToSecondTab}>Tab 2</button>
-                    <div>
-                        <p>Email</p>
-                        <input type="email" name='email' value={data.email} onChange={handleChange} />
+                <div className="addUser-root">
+                    {/* <button onClick={handleGoBack}>Go back</button> */}
+                    <button onClick={handleRedirectToSecondTab} className="addUser-tab2">Tab 2</button>
+                    <div className="addUser-block">
+                        <div>
+                            <p>Email</p>
+                            <input type="email" name='email' value={data.email} onChange={handleChange} />
+                        </div>
+                        <div>
+                            <p>Username</p>
+                            <input type="text" name='username' value={data.username} onChange={handleChange} />
+                        </div>
+                        <div>
+                            <p>Mobile Number</p>
+                            <input type="number" name='mobileNumber' value={data.mobileNumber} onChange={handleChange} />
+                        </div>
+                        <div>
+                            <p>Address</p>
+                            <textarea name='address' value={data.address} onChange={handleChange} />
+                        </div>
+                        <button onClick={handleAddingUser}>Add user</button>
                     </div>
-                    <div>
-                        <p>Username</p>
-                        <input type="text" name='username' value={data.username} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <p>Mobile Number</p>
-                        <input type="number" name='mobileNumber' value={data.mobileNumber} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <p>Address</p>
-                        <textarea name='address' value={data.address} onChange={handleChange} />
-                    </div>
-                    <button onClick={handleAddingUser}>Add user</button>
                 </div>
                 :
-                <p>Please login</p>
+                <p>Please <Link to="/">Login</Link> again</p>
             } 
         </>
     )

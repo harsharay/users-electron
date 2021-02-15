@@ -9,7 +9,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Link to="/addUser">First Tab</Link>
+        {/* <Link to="/addUser">First Tab</Link> */}
         <Switch>
           <Route path="/" component={Login} exact/>
           <Route path="/addUser" component={Register} exact/>

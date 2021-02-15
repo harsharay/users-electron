@@ -18,14 +18,21 @@ const SecondTab = (props) => {
 
         let authToken = props.location.jwtAuthToken || localStorageToken
 
-        fetch(backendUrl+"/api/getAllUserData", {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'authorization': "Bearer "+ (props.location.authToken || authToken)
-            },
-        }).then(data => data.json())
-        .then(json => setAllUserData(json.allData))
+        if(authToken) {
+            fetch(backendUrl+"/api/getAllUserData", {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'authorization': "Bearer "+ (props.location.authToken || authToken)
+                },
+            }).then(data => data.json())
+            .then(json => {
+                setAllUserData(json.allData)
+                // window.alert(json.message)
+            })
+        } else {
+            window.alert("Please login again")
+        }
     },[toBeDeletedData])
 
 
@@ -64,13 +71,16 @@ const SecondTab = (props) => {
                     'authorization': "Bearer "+ (props.location.authToken || authToken)
                 }
             }).then(data => data.json())
-            .then(json => console.log(json))
+            .then(json => window.alert(json.message))
         }
     },[toBeDeletedData])
 
     return (
         <div>
-            <button onClick={handleGoToFirstTab}>Tab 1</button>
+            <div className="secondTab-buttonGroup">
+                <button onClick={() => props.history.push("/")} className="secondTab-toTab1">Login</button>
+                <button onClick={handleGoToFirstTab} className="secondTab-toTab1">Tab 1</button>
+            </div>
             <p>List of all the user details added</p>
             { (allUserData && allUserData.length>0) ? 
                 <div>

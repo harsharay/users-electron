@@ -38,34 +38,41 @@ const Login = (props) => {
         }).then(data => data.json())
         .then(json => {
             setAuthData(json)
+            console.log(json,41)
             if(json.token.length > 0) {
                 props.history.push({
                     pathname: "/addUser",
                     jwtAuthToken: json.token
                 })
+
+                let token = JSON.stringify({
+                    token: json.token,
+                    expiry: (new Date().getTime())+300000
+                })
+    
+                localStorage.setItem('authToken', token)
+            } else if(json.message === 'unauthorized') {
+                window.alert("Wrong login details")
             }
 
-            let token = JSON.stringify({
-                token: json.token,
-                expiry: (new Date().getTime())+300000
-            })
-
-            localStorage.setItem('authToken', token)
+            
         })
     }
 
 
     return (
-        <div>
-            <div>
-                <p>Email</p>
-                <input type="email" name='email' value={data.email} onChange={handleChange} />
+        <div className="login-root">
+            <div className="login-block">
+                <div>
+                    <p>Email</p>
+                    <input type="email" name='email' value={data.email} onChange={handleChange} />
+                </div>
+                <div>
+                    <p>Password</p>
+                    <input type="password" name='password' value={data.password} onChange={handleChange} />
+                </div>
+                <button onClick={retrieveLoginInfo}>Login</button>
             </div>
-            <div>
-                <p>Password</p>
-                <input type="password" name='password' value={data.password} onChange={handleChange} />
-            </div>
-            <button onClick={retrieveLoginInfo}>Login</button>
         </div>
     )
 }

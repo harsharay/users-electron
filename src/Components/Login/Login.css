@@ -1,0 +1,30 @@
+.login-root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-block {
+    /* border: 2px solid red; */
+    text-align: left;
+    /* width: 20%; */
+    width: fit-content;
+    margin-top: 10%;
+    padding: 5%;
+    box-shadow: 2px -1px 26px -15px rgba(0,0,0,0.75);
+    border-radius: 10px;
+}
+
+.login-block input {
+    border: none;
+    border-bottom: 2px solid black;
+    padding: 5px 0 0 0;
+    outline: none;
+}
+
+.login-block button {
+    margin-top: 20%;
+    /* border: none */
+    width: 50%;
+}

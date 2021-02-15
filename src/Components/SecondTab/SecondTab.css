@@ -1,3 +1,12 @@
+.secondTab-buttonGroup {
+    margin: 5% 0;
+}
+
+.secondTab-toTab1 {
+    padding: 2px 9%;
+    cursor: pointer;
+}
+
 .singleUserData-div {
     display: flex;
     flex-direction: row;
