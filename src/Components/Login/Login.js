@@ -4,7 +4,7 @@ import "./Login.css"
 
 const Login = (props) => {
 
-    let backendUrl = 'http://localhost:4999'
+    let backendUrl = 'https://user-mngmt-backend.herokuapp.com'
     const [data, setData] = useState({
         email: '',
         password: ''

@@ -5,7 +5,7 @@ import "./Register.css"
 
 const Register = (props) => {
 
-    let backendUrl = 'http://localhost:4999'
+    let backendUrl = 'https://user-mngmt-backend.herokuapp.com'
     const [data, setData] = useState({
         username: '',
         email: '',

@@ -4,7 +4,7 @@ import "./SecondTab.css"
 
 const SecondTab = (props) => {
 
-    const backendUrl = "http://localhost:4999"
+    const backendUrl = "https://user-mngmt-backend.herokuapp.com"
     const [allUserData, setAllUserData] = useState([])
     const [toBeDeletedData, setToBeDeletedData] = useState([])
 
